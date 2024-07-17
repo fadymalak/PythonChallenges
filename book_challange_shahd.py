@@ -20,7 +20,7 @@ class Library:
             print("No Books Found. Library is Empty.")
         else:
             for book in self.books:
-                print(book)
+                return book
 
     def find_book_by_title(self, title):
         for book in self.books:
@@ -56,18 +56,11 @@ class TestLib(unittest.TestCase):
         self.library.add_book(new_book)
         self.assertEqual(len(self.library.books), 3)
         self.assertEqual(self.library.books[-1], new_book)
-    
-    def test_library_display_books(self):
-        captured_output = StringIO()
-        sys.stdout = captured_output
         
-        self.library.display_books()
-        
-        sys.stdout = sys.__stdout__
-        captured_output = captured_output.getvalue()
-
-        self.assertIn("Atomic Habits", captured_output)
-        self.assertIn("Harry Potter: Philosopher's Stone", captured_output)
+        def test_library_display_books(self):
+        expected_books = ["Atomic Habits", "Harry Potter: Philosopher's Stone"]
+        returned_book = self.library.display_books()
+        self.assertIn(returned_book, expected_books)
 
     def test_find_existing_book_by_title(self):
         result = self.library.find_book_by_title('Atomic Habits')

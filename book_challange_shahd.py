@@ -17,7 +17,7 @@ class Library:
 
     def display_books(self):
         if not self.books:
-            print("No Books Found. Library is Empty.")
+            return "No Books Found. Library is Empty."
         else:
             for book in self.books:
                 return book
